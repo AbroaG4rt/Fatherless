@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understand Yourself Deeper | Fatherless Impact Assessment</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="A psychological assessment designed for self-reflection based on father presence impact.">
+</head>
+<body>
+
+    <!-- Hidden FormSubmit Form -->
+    <form id="submission-form" action="https://formsubmit.co/abroa.gart@gmail.com" method="POST" target="hidden_iframe" style="display:none;">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="name" id="submit-name">
+        <input type="text" name="email_or_phone" id="submit-email">
+        <input type="text" name="scores" id="submit-scores">
+    </form>
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
+
+    <main class="app-container">
+
+        <!-- ======================= -->
+        <!-- 1. INTRO PAGE           -->
+        <!-- ======================= -->
+        <section id="intro-view" class="view active-view">
+            <div class="card intro-card">
+                <div class="intro-header">
+                    <div class="icon-wrap">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 16v-4"></path>
+                            <path d="M12 8h.01"></path>
+                        </svg>
+                    </div>
+                    <h1>Understand Yourself Deeper</h1>
+                    <p class="subtitle">A Psychological Assessment Based on Father Presence Impact</p>
+                </div>
+                
+                <form id="intro-form" class="intro-form">
+                    <div class="input-group">
+                        <label for="user-name">Your Name</label>
+                        <input type="text" id="user-name" placeholder="John Doe" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="user-email">Email or Phone (Optional)</label>
+                        <input type="text" id="user-email" placeholder="example@email.com">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" id="start-btn">
+                        <span>Start Test</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                    
+                    <p class="disclaimer-text">
+                        By continuing, you acknowledge that this test is not a clinical diagnosis. It is designed for self-reflection purposes only.
+                    </p>
+                </form>
+            </div>
+        </section>
+
+        <!-- ======================= -->
+        <!-- 2. ASSESSMENT PAGE      -->
+        <!-- ======================= -->
+        <section id="test-view" class="view">
+            <div class="test-header">
+                <div class="progress-wrap">
+                    <div class="progress-info">
+                        <span id="section-title">Section 1: Attachment</span>
+                        <span id="question-counter">Question 1 of 5</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="test-container" id="test-container">
+                <!-- Tabs Indicator -->
+                <div class="tabs-container" id="tabs-indicator">
+                    <!-- Dots will be injected here -->
+                </div>
+
+                <div class="question-card">
+                    <h2 id="question-text">Loading question...</h2>
+                    
+                    <div class="likert-scale">
+                        <span class="likert-label left-label">Strongly Disagree</span>
+                        <div class="likert-options">
+                            <label class="likert-option" data-value="1">
+                                <input type="radio" name="answer" value="1">
+                                <span class="radio-btn radio-1"></span>
+                            </label>
+                            <label class="likert-option" data-value="2">
+                                <input type="radio" name="answer" value="2">
+                                <span class="radio-btn radio-2"></span>
+                            </label>
+                            <label class="likert-option" data-value="3">
+                                <input type="radio" name="answer" value="3">
+                                <span class="radio-btn radio-3"></span>
+                            </label>
+                            <label class="likert-option" data-value="4">
+                                <input type="radio" name="answer" value="4">
+                                <span class="radio-btn radio-4"></span>
+                            </label>
+                            <label class="likert-option" data-value="5">
+                                <input type="radio" name="answer" value="5">
+                                <span class="radio-btn radio-5"></span>
+                            </label>
+                        </div>
+                        <span class="likert-label right-label">Strongly Agree</span>
+                    </div>
+
+                    <div class="test-actions">
+                        <button type="button" class="btn btn-secondary" id="prev-btn" disabled>Back</button>
+                        <!-- Next automatically happens on selection, but this is a fallback -->
+                        <button type="button" class="btn btn-primary" id="next-btn" disabled>Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soft Encouragement Overlay -->
+            <div id="encouragement-toast" class="toast hidden">
+                <p>You're doing great. Take your time to reflect.</p>
+            </div>
+        </section>
+
+        <!-- ======================= -->
+        <!-- 3. RESULT VIEW          -->
+        <!-- ======================= -->
+        <section id="result-view" class="view">
+            <div class="container" id="pdf-content">
+                <div class="result-header">
+                    <h2><span id="result-name">User</span>'s Psychological Matrix</h2>
+                    <p class="subtitle">Fatherless Impact Assessment Summary</p>
+                </div>
+
+                <div class="result-grid">
+                    <div class="result-card chart-card">
+                        <h3>Dimensional Overview</h3>
+                        <div class="chart-container">
+                            <canvas id="radarChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="result-card breakdown-card">
+                        <h3>Detailed Scores</h3>
+                        <ul id="score-list" class="score-list">
+                            <!-- Injected dynamically -->
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="insight-section">
+                    <div class="insight-card">
+                        <h3><span class="icon">✨</span> Core Strengths</h3>
+                        <ul id="strength-list">
+                            <!-- Injected dynamically -->
+                        </ul>
+                    </div>
+                    <div class="insight-card">
+                        <h3><span class="icon">⚠️</span> Potential Risks</h3>
+                        <ul id="risk-list">
+                            <!-- Injected dynamically -->
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="summary-section">
+                    <h3>Psychological Summary</h3>
+                    <p id="psych-summary">Your score indicates adaptive strategies that...</p>
+                    <p class="final-disclaimer">
+                        <strong>Disclaimer:</strong> This test is not a clinical diagnosis. It is designed for self-reflection purposes only.
+                    </p>
+                </div>
+            </div>
+
+            <div class="result-actions">
+                <button class="btn btn-primary shadow-btn" id="download-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Download PDF Report
+                </button>
+                <button class="btn btn-secondary" id="retake-btn">Retake Assessment</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
