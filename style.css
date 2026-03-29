@@ -1,0 +1,310 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #2b6cb0;
+  --primary-hover: #1a4f8b;
+  --bg-color: #f7fafc;
+  --card-bg: #ffffff;
+  --text-main: #2d3748;
+  --text-muted: #718096;
+  --border-color: #e2e8f0;
+  --border-radius: 12px;
+  --transition: all 0.3s ease;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 10px 15px rgba(0, 0, 0, 0.03);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Header & Progress */
+header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.progress-container {
+  width: 100%;
+  background-color: var(--border-color);
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 1rem;
+  display: none; /* Shown during test */
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: var(--primary-color);
+  width: 0%;
+  transition: width 0.5s ease;
+}
+
+/* Cards / Sections */
+.section {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 2.5rem;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 0.5s forwards;
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.intro-text p {
+  margin-bottom: 1rem;
+  color: var(--text-muted);
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.1);
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn:disabled {
+  background-color: var(--text-muted);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.btn-secondary {
+  background-color: var(--border-color);
+  color: var(--text-main);
+}
+.btn-secondary:hover {
+  background-color: #cbd5e0;
+}
+
+.btn-block {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* Questions */
+.question-block {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+.question-block:last-child {
+  border-bottom: none;
+  margin-bottom: 1rem;
+  padding-bottom: 0;
+}
+
+.question-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Likert Scale */
+.likert-scale {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.likert-btn {
+  flex: 1;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid var(--primary-color);
+  background: white;
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition);
+}
+
+.likert-btn:hover {
+  background-color: rgba(43, 108, 176, 0.1);
+}
+
+.likert-btn.selected {
+  background-color: var(--primary-color);
+  color: white;
+  box-shadow: 0 0 10px rgba(43, 108, 176, 0.4);
+}
+
+/* Sizing circles dynamically for visual hierarchy like 16personalities */
+.likert-btn[data-val="1"], .likert-btn[data-val="5"] {
+  width: 50px;
+  height: 50px;
+  flex: 0 0 50px;
+}
+.likert-btn[data-val="2"], .likert-btn[data-val="4"] {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+}
+.likert-btn[data-val="3"] {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  border-color: var(--text-muted);
+}
+.likert-btn[data-val="3"].selected {
+  background-color: var(--text-muted);
+}
+
+.likert-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0.5rem auto 0;
+}
+
+.agree-label { color: var(--primary-color); font-weight: 500; text-align: right;}
+.disagree-label { color: #e53e3e; font-weight: 500; text-align: left; }
+.likert-btn[data-val="1"], .likert-btn[data-val="2"] { border-color: #e53e3e; }
+.likert-btn[data-val="1"]:hover, .likert-btn[data-val="2"]:hover { background-color: rgba(229, 62, 62, 0.1); }
+.likert-btn[data-val="1"].selected, .likert-btn[data-val="2"].selected { background-color: #e53e3e; box-shadow: 0 0 10px rgba(229, 62, 62, 0.4); }
+
+/* Results */
+.result-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.result-type {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.chart-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.insight-box {
+  background-color: var(--bg-color);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1.5rem;
+  border-left: 4px solid var(--primary-color);
+}
+
+.insight-box h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+#qr-container {
+  text-align: center;
+  margin-top: 2rem;
+  display: none;
+}
+#qrcode {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .app-container {
+    padding: 1rem;
+  }
+  .section {
+    padding: 1.5rem;
+  }
+  .likert-scale {
+    gap: 0.25rem;
+  }
+  .action-buttons {
+    flex-direction: column;
+  }
+}

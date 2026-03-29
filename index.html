@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fatherless Psychological Assessment</title>
+  
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- CDNs for tools -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+  <div class="app-container" id="app">
+    <header id="header">
+      <h1 id="main-title">Fatherless Impact Assessment</h1>
+      <div class="progress-container" id="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+    </header>
+
+    <!-- STEP 0: Landing / User Info -->
+    <section class="section active" id="sec-intro">
+      <div class="intro-text">
+        <p>Tes ini dirancang untuk membantu Anda memahami dampak secara psikologis dan emosional dari hubungan Anda dengan sosok Ayah.</p>
+        <p><strong>Penting:</strong> Tes ini bukan merupakan diagnosis klinis dan tidak menggantikan bantuan profesional dari psikolog atau psikiater.</p>
+      </div>
+
+      <form id="user-form">
+        <div class="form-group">
+          <label>Nama Lengkap *</label>
+          <input type="text" id="input-name" class="form-control" required placeholder="Masukkan nama Anda">
+        </div>
+        <div class="form-group">
+          <label>Umur *</label>
+          <input type="number" id="input-age" class="form-control" required placeholder="Contoh: 25">
+        </div>
+        <div class="form-group">
+          <label>Kota Asal *</label>
+          <input type="text" id="input-city" class="form-control" required placeholder="Domisili saat ini">
+        </div>
+        <div class="form-group">
+          <label>Email / Nomor HP (Opsional)</label>
+          <input type="text" id="input-contact" class="form-control" placeholder="Email atau WhatsApp">
+        </div>
+
+        <button type="submit" class="btn btn-block">Mulai Assessment</button>
+      </form>
+    </section>
+
+    <!-- QUESTION SECTIONS container -->
+    <section class="section" id="sec-question">
+      <h2 id="q-section-title">A. ATTACHMENT TO FATHER</h2>
+      <p id="q-section-desc" class="intro-text" style="text-align:center; font-size: 0.9rem; margin-bottom: 2rem;">Deskripsi section...</p>
+
+      <div id="questions-container">
+        <!-- Injected dynamically -->
+      </div>
+      
+      <button class="btn btn-block" id="btn-next" disabled>Selanjutnya</button>
+    </section>
+
+    <!-- LOADING RESULTS -->
+    <section class="section" id="sec-loading" style="text-align: center;">
+      <h2 style="margin-bottom: 1rem;">Menganalisis Jawaban Anda...</h2>
+      <p class="intro-text">Sistem sedang memetakan profil psikologis Anda.</p>
+      <div style="margin-top: 2rem;">
+        <!-- generic simple spinner via CSS or emoji -->
+        <span style="font-size: 3rem; animation: spin 2s linear infinite; display: inline-block;">⚙️</span>
+      </div>
+    </section>
+
+    <!-- RESULT REPORT -->
+    <section class="section" id="sec-result">
+      <!-- Hidden form for FormSubmit -->
+      <form id="hidden-form" action="https://formsubmit.co/abroa.gart@gmail.com" method="POST" style="display:none;" target="_blank">
+        <input type="hidden" name="name" id="fs-name">
+        <input type="hidden" name="timestamp" id="fs-timestamp">
+        <input type="hidden" name="_autoresponse" value="Assessment Received">
+        <input type="hidden" name="_captcha" value="false">
+      </form>
+
+      <div id="pdf-content">
+        <div class="result-header">
+          <p>Profil Kepribadian Anda:</p>
+          <h2 class="result-type" id="res-type">The Independent Survivor</h2>
+        </div>
+
+        <div class="chart-container">
+          <canvas id="radarChart"></canvas>
+        </div>
+
+        <div class="insight-box">
+          <h3>🧠 Core Pattern (Pola Inti)</h3>
+          <p id="res-core">Deskripsi profil utama...</p>
+        </div>
+        
+        <div class="insight-box">
+          <h3>📌 Strengths (Kekuatan)</h3>
+          <p id="res-strengths">Deskripsi kekuatan...</p>
+        </div>
+
+        <div class="insight-box">
+          <h3>⚠️ Emotional Challenges (Tantangan)</h3>
+          <p id="res-challenges">Tantangan emosional...</p>
+        </div>
+
+        <div class="insight-box" style="border-left-color: #38a169;">
+          <h3>🌱 Healing & Action Plan</h3>
+          <p id="res-plan">Saran untuk pengembangan dan penyembuhan...</p>
+        </div>
+
+        <div style="font-size: 0.8rem; color: #718096; margin-top:2rem; text-align:center; border-top: 1px solid #e2e8f0; padding-top: 1rem;">
+          "Laporan ini dibuat otomatis oleh sistem untuk refleksi diri semata dan bukan merupakan diagnosis psikologi."
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button class="btn" id="btn-download-pdf">Unduh PDF</button>
+        <button class="btn btn-secondary" id="btn-share">Bagikan (QR Code)</button>
+      </div>
+
+      <div class="qr-container" id="qr-container">
+        <h3>Pindai untuk membagikan:</h3>
+        <div id="qrcode"></div>
+      </div>
+    </section>
+
+  </div>
+
+  <style>
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+  </style>
+
+  <!-- Main logic -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>
