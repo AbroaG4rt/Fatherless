@@ -48,17 +48,22 @@
                             <path d="M12 8h.01"></path>
                         </svg>
                     </div>
-                    <h1>Understand Yourself Deeper</h1>
+                    <h1>Mengenal Diri Sendiri Tanpa Peran Ayah</h1>
                     <p class="subtitle">A Psychological Assessment Based on Father Presence Impact</p>
                 </div>
                 
                 <form id="intro-form" class="intro-form">
                     <div class="input-group">
-                        <label for="user-name">Your Name</label>
+                        <label for="user-name">Nama</label>
                         <input type="text" id="user-name" placeholder="John Doe" required>
                     </div>
                     <div class="input-group">
-                        <label for="user-email">Email or Phone (Optional)</label>
+                        <label for="olders">Umur</label>
+                        <input type="text" id="olders" placeholder="18" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="user-email">Email atau Phone Number (Optional)</label>
                         <input type="text" id="user-email" placeholder="example@email.com">
                     </div>
                     
@@ -103,7 +108,7 @@
                     <h2 id="question-text">Loading question...</h2>
                     
                     <div class="likert-scale">
-                        <span class="likert-label left-label">Strongly Disagree</span>
+                        <span class="likert-label left-label">Tidak Setuju</span>
                         <div class="likert-options">
                             <label class="likert-option" data-value="1">
                                 <input type="radio" name="answer" value="1">
@@ -126,7 +131,7 @@
                                 <span class="radio-btn radio-5"></span>
                             </label>
                         </div>
-                        <span class="likert-label right-label">Strongly Agree</span>
+                        <span class="likert-label right-label">Setuju</span>
                     </div>
 
                     <div class="test-actions">
@@ -139,7 +144,7 @@
 
             <!-- Soft Encouragement Overlay -->
             <div id="encouragement-toast" class="toast hidden">
-                <p>You're doing great. Take your time to reflect.</p>
+                <p>Kamu sudah melakukan yang terbaik, istirahat sebentar untuk mengenal diri-sendiri.</p>
             </div>
         </section>
 
